@@ -16,14 +16,14 @@ public class CustomerConfig {
             Customer test0 = new Customer(
                     "TestCustomer",
                     "testOne@example.com",
-                    LocalDate.of(1979, Month.AUGUST,19),
-                    29
+                    LocalDate.of(1979, Month.AUGUST,19)
+
             );
             Customer test1 = new Customer(
                     "JohnDoe",
                     "JohnDoe@example.com",
-                    LocalDate.of(1986, Month.APRIL,3),
-                    29
+                    LocalDate.of(1986, Month.APRIL,3)
+
             );
             repository.saveAll(List.of(test0,test1));
         };

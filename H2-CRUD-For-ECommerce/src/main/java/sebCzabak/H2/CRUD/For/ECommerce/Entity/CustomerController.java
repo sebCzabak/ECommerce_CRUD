@@ -1,13 +1,12 @@
 package sebCzabak.H2.CRUD.For.ECommerce.Entity;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping(path="/api/v1/customer")
+@RestController
+@RequestMapping(path = "/api/v1/customer")
 public class CustomerController {
     private final CustomerService customerService;
 
@@ -16,8 +15,29 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<Customer> getCustomers(){
+    public List<Customer> getCustomers() {
         return customerService.getCustomers();
     }
+
+    @PostMapping
+    public void registerNewCustomer(
+            @RequestBody Customer customer) {
+        customerService.registerNewCustomer(customer);
+    }
+
+    @PutMapping(path = "{customerId}")
+    public void updateCustomer(
+            @PathVariable("customerId") Long customerId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email) {
+        customerService.updateCustomer(customerId,name,email);
+    }
+    @DeleteMapping(path = "{customerId}")
+    public void deleteCustomer(
+            @PathVariable("customerId")Long customerId){
+        customerService.deleteCustomer(customerId);
+    }
+
+
 
 }
