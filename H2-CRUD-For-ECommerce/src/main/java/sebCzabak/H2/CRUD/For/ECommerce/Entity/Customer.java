@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -24,6 +25,7 @@ public class Customer {
     private String name;
     private String email;
     private LocalDate dob;
+    @Transient
     private Integer age;
 
     public Customer(final String name, final String email, final LocalDate dob, final Integer age) {
@@ -31,5 +33,9 @@ public class Customer {
         this.email = email;
         this.dob = dob;
         this.age = age;
+    }
+
+    public Integer getAge() {
+        return Period.between(this.dob,LocalDate.now()).getYears();
     }
 }
